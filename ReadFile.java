@@ -1,4 +1,7 @@
-  public class ReadFile {
+import java.io.*;
+import java.util.*;
+
+public class ReadFile {
   public static void main(String[] args) {
     try {
       File myObj = new File("filename.txt");
