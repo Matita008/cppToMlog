@@ -24,7 +24,7 @@ public class ReadFile {
         System.out.println(data);
       }
      try {
-       myReader.close();
+      myReader.close();
      } catch (IOException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
@@ -35,7 +35,10 @@ public class ReadFile {
     try {
     out.close();
     } catch (IOException e) {
-       System.out.println("An error occurred.");
-       e.printStackTrace();
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
   }
 }
