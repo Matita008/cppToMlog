@@ -7,23 +7,28 @@ import java.util.Scanner;
 public class ReadFile {
   public static void main(String[] args) {
     try {
-      File outFile = new File("outFile.txt");
-      if (!outFile.createNewFile())  System.out.println("file exisit");
+      File crFile = new File("outFile.txt");
+      if (!crFile.createNewFile())  System.out.println("file exisit");
       else System.out.println("File created automatically");
-      outFile.write("File updated!");
-      outFile.close();
       try {
-        File inFile = new File("inFile.txt");
-        Scanner read = new Scanner(inFile);
-        while (read.hasNextLine()) {
-          String line = read.nextLine();
-          //outFile.write(line + "\n");
-          System.out.println(line);
+        File outFile = new File("outFile.txt");
+        outFile.write("File updated!");
+        outFile.close();
+        try {
+          File inFile = new File("inFile.txt");
+          Scanner read = new Scanner(inFile);
+          while (read.hasNextLine()) {
+            String line = read.nextLine();
+            //outFile.write(line + "\n");
+            System.out.println(line);
+          }
+        } catch (FileNotFoundException  e) {
+          e.printStackTrace();
         }
-      } catch (FileNotFoundException  e) {
+        //outFile.close();
+      } catch (IOException e) {
         e.printStackTrace();
       }
-      //outFile.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
