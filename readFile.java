@@ -15,11 +15,11 @@ public class ReadFile {
           String line = read.nextLine;
           outFile.write(line + "\n");
           System.out.println(line);
-				}
-			} catch (IOExeption e) {
+        }
+      } catch (IOExeption e) {
         e.printStackTrace();
-			}
-			outFile.close();
+      }
+      outFile.close();
     } catch (IOExeption e) {
       e.printStackTrace();
     }
