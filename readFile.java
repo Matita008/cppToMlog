@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.io.IOException;
 
 public class ReadFile {
   public static void main(String[] args) {
@@ -24,11 +23,19 @@ public class ReadFile {
         out.write(data);
         System.out.println(data);
       }
-      myReader.close();
+     try {
+       myReader.close();
+     } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
     } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
+    try {
     out.close();
+    } catch (IOException e) {
+       System.out.println("An error occurred.");
+       e.printStackTrace();
   }
 }
