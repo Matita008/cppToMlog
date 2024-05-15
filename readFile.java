@@ -11,7 +11,7 @@ public class ReadFile {
       if (!crFile.createNewFile())  System.out.println("file exisit");
       else System.out.println("File created automatically");
       try {
-        File outFile = new File("outFile.txt");
+        FileWriter outFile = new FileWriter("outFile.txt");
         outFile.write("File updated!");
         outFile.close();
         try {
