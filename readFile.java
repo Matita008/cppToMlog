@@ -18,11 +18,11 @@ public class ReadFile {
           //outFile.write(line + "\n");
           System.out.println(line);
         }
-      } catch (IOExeption e) {
+      } catch (IOException e) {
         e.printStackTrace();
       }
       outFile.close();
-    } catch (IOExeption e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
