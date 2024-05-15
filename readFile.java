@@ -15,6 +15,7 @@ public class ReadFile {
 					String line = read.nextLine;
 					outFile.write(line + "\n");
 					System.out.println(line);
+				}
 			} catch (IOExeption e) {
         e.printStackTrace();
       }
