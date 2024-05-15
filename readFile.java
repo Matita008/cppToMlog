@@ -15,7 +15,7 @@ public class ReadFile {
         Scanner read = new Scanner(inFile);
         while (read.hasNextLine()) {
           String line = read.nextLine;
-          outFile.write(line + "\n");
+          //outFile.write(line + "\n");
           System.out.println(line);
         }
       } catch (IOExeption e) {
