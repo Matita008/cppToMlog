@@ -18,7 +18,7 @@ public class ReadFile {
 				}
 			} catch (IOExeption e) {
         e.printStackTrace();
-      }
+			}
 			outFile.close();
     } catch (IOExeption e) {
       e.printStackTrace();
