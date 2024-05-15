@@ -13,19 +13,19 @@ public class ReadFile {
       try {
         FileWriter outFile = new FileWriter("outFile.txt");
         outFile.write("File updated!");
-        outFile.close();
+        //outFile.close();
         try {
           File inFile = new File("inFile.txt");
           Scanner read = new Scanner(inFile);
           while (read.hasNextLine()) {
             String line = read.nextLine();
-            //outFile.write(line + "\n");
+            outFile.write(line + "\n");
             System.out.println(line);
           }
         } catch (FileNotFoundException  e) {
           e.printStackTrace();
         }
-        //outFile.close();
+        outFile.close();
       } catch (IOException e) {
         e.printStackTrace();
       }
