@@ -4,41 +4,23 @@ import java.util.*;
 public class ReadFile {
   public static void main(String[] args) {
     try {
-      File myObj = new File("outFile.txt");
-      if (myObj.createNewFile()) {
-        System.out.println("File created: " + myObj.getName());
-      } else {
-        System.out.println("File already exists.");
+      File outFile = new File("outFile.txt");
+      if (!outFile.createNewFile())  System.out.println("file exisit");
+      else System.out.println("File created automatically");
+      outFile.write("File updated!");
+      try {
+        File inFile = new File("inFile.txt");
+				Scanner read = new Scanner(inFile);
+				while (read.hasNextLine()) {
+					String line = read.nextLine;
+					outFile.write(line + "\n");
+					System.out.println(line);
+			} catch (IOExeption e) {
+        e.printStackTrace();
       }
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
+			outFile.close();
+    } catch (IOExeption e) {
       e.printStackTrace();
     }
-    FileWriter out = new FileWriter("filename.txt");
-    try {
-      File myObj = new File("inFile.txt");
-      Scanner myReader = new Scanner(myObj);
-      while (myReader.hasNextLine()) {
-        String data = myReader.nextLine();
-        out.write(data);
-        System.out.println(data);
-      }
-     try {
-      myReader.close();
-     } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
-    try {
-    out.close();
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
   }
 }
