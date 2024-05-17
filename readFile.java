@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class ReadFile {
-  public static void main(String[] args) {
+  public static void duplicate(/*String[] args*/) {
     try {
       File crFile = new File("outFile.txt");
       if (!crFile.createNewFile())  System.out.println("file exisit");
