@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
-import java.io.FileNotFoundException;
+/*import java.io.FileNotFoundException;
 import java.io.File;
-import java.util.Scanner;
+import java.util.Scanner;*/
 
 public class readFile {
   public static void main(String[] args) {
