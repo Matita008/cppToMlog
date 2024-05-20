@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.File;
 import java.util.Scanner;
 
-public class ReadFile {
+public class readFile {
   public static void main(String[] args) {
     try {
       File crFile = new File("outFile.txt");
