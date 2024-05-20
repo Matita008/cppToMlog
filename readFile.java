@@ -11,20 +11,23 @@ public class readFile {
       if (!crFile.createNewFile())  System.out.println("file exisit");
       else System.out.println("File created automatically");
       try {
-        FileWriter outFile = new FileWriter("outFile.txt");
-        outFile.write("File updated!");
+          FileWriter outFile = new FileWriter("outFile.txt");
+          outFile.write("New file recived!");
+          FileWriter workFile = new FileWriter("workFile.txt");
         //outFile.close();
         try {
           File inFile = new File("inFile.txt");
-          Scanner read = new Scanner(inFile);
-          while (read.hasNextLine()) {
-            String line = read.nextLine();
-            outFile.write(line + "\n");
-            System.out.println(line);
-          }
+          	Scanner read = new Scanner(inFile);
+	          while (read.hasNextLine()) {
+	            String line = read.nextLine();
+	            outFile.write(line + "\n");
+	            System.out.println(line);
+	          }
+	          read.close();
         } catch (FileNotFoundException  e) {
           e.printStackTrace();
         }
+        workFile.close();
         outFile.close();
       } catch (IOException e) {
         e.printStackTrace();
