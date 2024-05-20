@@ -20,7 +20,9 @@ public class readFile {
           	Scanner read = new Scanner(inFile);
 	          while (read.hasNextLine()) {
 	            String line = read.nextLine();
+	            outFile.write(opCounter.count(line) + " operation\t");
 	            outFile.write(line + "\n");
+	            System.out.print(opCounter.count(line) + " operation\t");
 	            System.out.println(line);
 	          }
 	          read.close();

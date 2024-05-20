@@ -1,5 +1,8 @@
-File updated!text 
-example
-line 3
- start \n test
-end
+New file recived!5 operation	1+2-3*5/6+6
+0 operation	unyjbthgvrf
+1 operation	/n
+1 operation	/t
+0 operation	\n
+0 operation	\t
+0 operation	'\n'
+0 operation	"\n"
