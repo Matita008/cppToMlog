@@ -5,7 +5,7 @@ public class stringManager {
     stringManager(String data)  {
         this.dataSt = data;
         this.length = data.length();
-        this.data = this.dataSt.toChar();
+        this.data = this.dataSt.toCharArray();
     }
     public final int countOcc(char[][] value,int nChar,char any)  {
         int count = 0;
