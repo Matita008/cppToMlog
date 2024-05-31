@@ -1,4 +1,5 @@
 import java.io.*;
+import utilities.*;
 import java.util.*;
 /*import java.io.FileNotFoundException;
 import java.io.File;
@@ -7,22 +8,22 @@ import java.util.Scanner;*/
 public class readFile {
   public static void main(String[] args) {
     try {
-      File crFile = new File("outFile.txt");
-      if (!crFile.createNewFile())  System.out.println("file exisit");
+      File outFileCk = new File("outFile.txt");
+      if (!outFileCk.createNewFile())  System.out.println("file exisit");
       else System.out.println("File created automatically");
       try {
           FileWriter outFile = new FileWriter("outFile.txt");
-          outFile.write("New file recived!");
           FileWriter workFile = new FileWriter("workFile.txt");
-        //outFile.close();
+          workFile.write("New file recived!");
         try {
           File inFile = new File("inFile.txt");
           	Scanner read = new Scanner(inFile);
 	          while (read.hasNextLine()) {
 	            String line = read.nextLine();
-	            outFile.write(opCounter.count(line) + " operation\t");
+	            stringManager str = new stringManager(line);
+	            outFile.write(str.countOp() + " operation\t");
 	            outFile.write(line + "\n");
-	            System.out.print(opCounter.count(line) + " operation\t");
+	            System.out.print(str.countOp() + " operation\t");
 	            System.out.println(line);
 	          }
 	          read.close();

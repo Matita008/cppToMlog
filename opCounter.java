@@ -1,11 +1,11 @@
-	public class opCounter {
+	//public class opCounter {
 		/*enum symb {
 			'+',
 			'-',
 			'*',
 			'/'
 		}*/
-	public static int count(String input) {
+	/*public static int count(String input) {
 		char val[] = { '+','-','*','/'};
 		int count = 0;
 		char[] characters = input.toCharArray();
@@ -16,4 +16,4 @@
 		}
 		return count;
 	}
-}
+}*/
