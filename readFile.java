@@ -8,19 +8,27 @@ public class readFile {
 		String workFileName = "workFile.txt";
 		String outFileName = "outFile.mlog";
 		if (args.length == 0) {
+			int n = 0;
 		} else if (args[0].charAt(0) == '-') {
 			for (int i = 0; i < args.length; i++) {
-				if (!(args[i].charAt(0) == '-'))
+				if (!(args[i].charAt(0) == '-')) {
 					throw new RuntimeException("need '-' before a parameter letter");
-				switch (args[i].charAt(1)) {
+				}
+						switch (args[i].charAt(1)) {
+				/*default:
+					i--;
+					break;*/
 				case 'i':
-					inFileName = args[i++];
+					i++;
+					inFileName = args[i];
 					break;
 				case 'o':
-					outFileName = args[i++];
+					i++;
+					outFileName = args[i];
 					break;
 				case 'w':
-					workFileName = args[i++];
+					i++;
+					workFileName = args[i];
 					break;
 				}
 			}
