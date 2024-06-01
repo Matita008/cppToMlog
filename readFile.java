@@ -8,11 +8,11 @@ import java.util.Scanner;*/
 public class readFile {
   public static void main(String[] args) {
     try {
-      File outFileCk = new File("outFile.txt");
+      File outFileCk = new File("outFile.mlog");
       if (!outFileCk.createNewFile())  System.out.println("file exisit");
       else System.out.println("File created automatically");
       try {
-          FileWriter outFile = new FileWriter("outFile.txt");
+          FileWriter outFile = new FileWriter("outFile.mlog");
           FileWriter workFile = new FileWriter("workFile.txt");
           workFile.write("New file recived!");
         try {
