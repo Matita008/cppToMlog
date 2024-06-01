@@ -1,5 +1,7 @@
 *.class
 */*.class
+*.mlog
+*.txt
 
 #file obsolete
 
