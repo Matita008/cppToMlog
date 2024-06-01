@@ -1,5 +1,7 @@
 *.class
 */*.class
-\\ file obsolete
+
+#file obsolete
+
 opCounter.java
 Main.java
