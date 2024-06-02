@@ -4,31 +4,34 @@ import utilities.*;
 
 public class readFile {
 	public static void main(String[] args) {
+		boolean stop = false;
 		String inFileName = "inFile.cpp";
 		String workFileName = "workFile.txt";
 		String outFileName = "outFile.mlog";
 		if (args.length == 0) {
-			int n = 0;
-		} else if (args[0].charAt(0) == '-') {
+		} else if (args[0].startsWith("-")) {
 			for (int i = 0; i < args.length; i++) {
-				if (!(args[i].charAt(0) == '-')) {
+				if (!args[i].startsWith("-")) {
 					throw new RuntimeException("need '-' before a parameter letter");
 				}
-						switch (args[i].charAt(1)) {
-				/*default:
-					i--;
-					break;*/
-				case 'i':
+				switch (args[i]) {
+				default:
+					throw new RuntimeException("Parameter not recognized :" + args[i]);
+				case "-in":
 					i++;
 					inFileName = args[i];
 					break;
-				case 'o':
+				case "-out":
 					i++;
 					outFileName = args[i];
 					break;
-				case 'w':
+				case "-work":
 					i++;
 					workFileName = args[i];
+					break;
+				case "-?":
+					System.out.println("Guide:");
+					stop = true;
 					break;
 				}
 			}
@@ -42,6 +45,8 @@ public class readFile {
 			workFileName = args[1];
 			outFileName = args[2];
 		}
+		if (stop)
+			return;
 		try {
 			File outFileCk = new File(outFileName);
 			File workFileCk = new File(workFileName);
