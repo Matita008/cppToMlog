@@ -31,6 +31,9 @@ public class readFile {
 					break;
 				case "-?":
 					System.out.println("Guide:");
+					System.out.println("-in for the c++ file");
+					System.out.println("-out for the name of the output file (include .mlog)");
+					System.out.println("-work for a workfile");
 					stop = true;
 					break;
 				}
