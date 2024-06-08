@@ -16,7 +16,7 @@ public final class jsonReader {
 	 * File::File(name)); }
 	 */
 
-	public jsonReader(File file) {
+	public jsonReader(File file) throws FileNotFoundException {
 		this.file = file;
 		scanFile();
 	}
