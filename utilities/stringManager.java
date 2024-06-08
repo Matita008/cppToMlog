@@ -24,11 +24,11 @@ public class stringManager {
 		return countOcc(ops, n, empty);
 	}
 
-public final int countOcc(char[][] value) {
+	public final int countOcc(char[][] value) {
 		return countOcc(value, value[0].length, ' ');
 	}
 
-public final int countOcc(char[][] value, char any) {
+	public final int countOcc(char[][] value, char any) {
 		return countOcc(value, value[0].length, any);
 	}
 
@@ -36,9 +36,14 @@ public final int countOcc(char[][] value, char any) {
 		return countOcc(value, nChar, ' ');
 	}
 
-/*public final int[] countOcc(char[][] value, char any) {
-		return countOcc(value, value[0].length, any);
-	}*/// TODO
+	public final int[] countSimb(char[][] value, char any) {
+		int[] array = new int[value.length];
+		for (int i = 0; i < value.length; i++) {
+			char[][] tmp = { value[i] };
+			array[i] = countOcc(tmp, any);
+		}
+		return array;
+	}
 
 	public final int countOcc(char[][] value, int nChar, char any) {
 		int count = 0;
