@@ -28,6 +28,10 @@ public final int countOcc(char[][] value) {
 		return countOcc(value, value[0].length, ' ');
 	}
 
+public final int countOcc(char[][] value, char any) {
+		return countOcc(value, value[0].length, any);
+	}
+
 	public final int countOcc(char[][] value, int nChar) {
 		return countOcc(value, nChar, ' ');
 	}
