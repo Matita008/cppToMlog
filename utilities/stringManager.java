@@ -36,6 +36,10 @@ public final int countOcc(char[][] value, char any) {
 		return countOcc(value, nChar, ' ');
 	}
 
+/*public final int[] countOcc(char[][] value, char any) {
+		return countOcc(value, value[0].length, any);
+	}*/// TODO
+
 	public final int countOcc(char[][] value, int nChar, char any) {
 		int count = 0;
 		for (int i = 0; i < length - nChar + 1; i++) {
