@@ -1,7 +1,16 @@
 *.class
 */*.class
+
+#input/output file
+
+.cpp
 *.mlog
 *.txt
+
+#eclipse file
+
+.class path
+.project
 
 #file obsolete
 
