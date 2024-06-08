@@ -11,10 +11,9 @@ public final class jsonReader {
 	@SuppressWarnings("unused")
 	private HashMap<String, Object> content = new HashMap<String, Object>();
 
-	/*
-	 * public jsonReader(String name) { //File file = new File(name); this(name ->
-	 * File::File(name)); }
-	 */
+	/*public jsonReader(File file (String name)-> {File file = new File(name)}) {
+		this(file);
+	}*/
 
 	public jsonReader(File file) throws FileNotFoundException {
 		this.file = file;
