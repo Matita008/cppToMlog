@@ -24,6 +24,10 @@ public class stringManager {
 		return countOcc(ops, n, empty);
 	}
 
+public final int countOcc(char[][] value) {
+		return countOcc(value, value[0].length, ' ');
+	}
+
 	public final int countOcc(char[][] value, int nChar) {
 		return countOcc(value, nChar, ' ');
 	}
