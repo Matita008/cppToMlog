@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.*;
 import utilities.*;
+import transpiller.*;
 
 public class readFile {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Throwable {
 		boolean stop = false;
 		String inFileName = "inFile.cpp";
 		String workFileName = "workFile.txt";
@@ -50,37 +51,29 @@ public class readFile {
 		}
 		if (stop)
 			return;
-		try {
-			File outFileCk = new File(outFileName);
-			File workFileCk = new File(workFileName);
-			if (outFileCk.createNewFile())
-				System.out.println("Output file created automatically");
-			else
-				System.out.println("Output file arleady exisit");
-			if (workFileCk.createNewFile())
-				System.out.println("Work file created automatically");
-			FileWriter outFile = new FileWriter(outFileName);
-			FileWriter workFile = new FileWriter(workFileName);
-			workFile.write("New file recived!");
-			try {
-				File inFile = new File(inFileName);
-				Scanner read = new Scanner(inFile);
-				while (read.hasNextLine()) {
-					String line = read.nextLine();
-					stringManager str = new stringManager(line);
-					outFile.write(str.countOp() + " operation\t");
-					outFile.write(line + "\n");
-					System.out.print(str.countOp() + " operation\t");
-					System.out.println(line);
-				}
-				read.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			workFile.close();
-			outFile.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		File outFileCk = new File(outFileName);
+		File workFileCk = new File(workFileName);
+		if (outFileCk.createNewFile())
+			System.out.println("Output file created automatically");
+		else
+			System.out.println("Output file arleady exisit");
+		if (workFileCk.createNewFile())
+			System.out.println("Work file created automatically");
+		FileWriter outFile = new FileWriter(outFileName);
+		FileWriter workFile = new FileWriter(workFileName);
+		workFile.write("New file recived!");
+		File inFile = new File(inFileName);
+		Scanner read = new Scanner(inFile);
+		while (read.hasNextLine()) {
+			String line = read.nextLine();
+			stringManager str = new stringManager(line);
+			outFile.write(str.countOp() + " operation\t");
+			outFile.write(line + "\n");
+			System.out.print(str.countOp() + " operation\t");
+			System.out.println(line);
 		}
+		read.close();
+		workFile.close();
+		outFile.close();
 	}
 }
