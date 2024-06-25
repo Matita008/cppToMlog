@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.*;
+import java.io.*;
 
 public class stringManager {
 	String dataSt;
@@ -66,6 +67,24 @@ public class stringManager {
 			}
 		}
 		return count;
+	}
+
+	public final int getPos(char[][] val) {
+		for (int i = 0; i < length - val[0].length; i++) {
+			for (int n = 0; n < val.length; n++) {
+				if (val[i][n] != this.data[i + n])
+					n = val.length + 1;
+				else if (n == val.length)
+					return i;
+			}
+		}
+		String error = "in " + dataSt + " weren't found any of the following: ";
+		for (char[] v : val)  {
+			for (char a : v)	error = error + a;
+			error = error + ",\n";
+		}
+		Throwable err = new Throwable(error);
+		throw new IOError(err);
 	}
 
 	public final int getOpPos(int index) {
