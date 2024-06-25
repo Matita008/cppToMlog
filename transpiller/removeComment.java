@@ -28,15 +28,17 @@ public class removeComment {
 		this.out = new FileWriter(out);
 	}
 
-	public void removeMultiLane() throws IOException {
+	public void removeMultiLane(FileWriter output) throws IOException {
 		Scanner read = new Scanner(in);
 		while (read.hasNextLine()) {
 			String line = read.nextLine();
-			if (line.contains("\\*")) {
+			if (line.contains("/*")) {
 
 			}
+			else output.write(line);
 		}
 		read.close();
+		output.close();
 	}
 
 	public void removeSingleLane(FileWriter output) throws IOException {
