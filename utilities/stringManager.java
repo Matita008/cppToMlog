@@ -2,6 +2,7 @@ package utilities;
 
 import java.util.*;
 import java.io.*;
+import utilities.converter;
 
 public class stringManager {
 	String dataSt;

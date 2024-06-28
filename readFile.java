@@ -68,11 +68,14 @@ public class readFile {
 		removeComment.SingleLane(workFileRead, workFile1);
 		Scanner read = new Scanner(inFile);
 		while (read.hasNextLine()) {
-			/*
-			 * String line = read.nextLine(); stringManager str = new stringManager(line);
-			 * outFile.write(str.countOp() + " operation\t"); outFile.write(line + "\n");
-			 * System.out.print(str.countOp() + " operation\t"); System.out.println(line);
-			 */
+			String line = read.nextLine();
+			stringManager str = new stringManager(line);
+			outFile.write(str.countOp());
+			outFile.write(" operation\t");
+			outFile.write(line + "\n");
+			System.out.print(str.countOp() + " operation\t");
+			System.out.println(line);
+
 		}
 		read.close();
 		workFile.close();

@@ -24,12 +24,12 @@ public class converter {
 		return end;
 	}
 	
-	public static final char[] toCharPrimitive(Object[] data) {
+	/*public static final char[] toCharPrimitive(Object[] data) {
 		return toCharPrimitive(data);
 	}
 	public static final char[][] toCharPrimitive(Object[][] data) {
 		return toCharPrimitive(data);
-	}
+	}*/
 	/*public static final char[][] toChar(String[] data)  {
 		char[][] end = new char[data.length][data.length];
 		for(int i = 0; i < data.length; i++)   end[i] = data[i].toCharArray();
