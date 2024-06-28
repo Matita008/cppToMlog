@@ -1,11 +1,11 @@
+.class
 *.class
-*/*.class
 
 #input/output file
 
 .cpp
-*.mlog
-*.txt
+.mlog
+.txt
 
 #eclipse file
 
