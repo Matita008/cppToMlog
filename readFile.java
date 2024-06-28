@@ -61,16 +61,18 @@ public class readFile {
 			System.out.println("Work file created automatically");
 		FileWriter outFile = new FileWriter(outFileName);
 		FileWriter workFile = new FileWriter(workFileName);
-		workFile.write("New file recived!");
+		FileWriter workFile1 = new FileWriter(workFileName + "_1.txt");
 		File inFile = new File(inFileName);
+		removeComment.MultiLane(inFile, workFile);
+		File workFileRead = new File(workFileName);
+		removeComment.SingleLane(workFileRead, workFile1);
 		Scanner read = new Scanner(inFile);
 		while (read.hasNextLine()) {
-			String line = read.nextLine();
-			stringManager str = new stringManager(line);
-			outFile.write(str.countOp() + " operation\t");
-			outFile.write(line + "\n");
-			System.out.print(str.countOp() + " operation\t");
-			System.out.println(line);
+			/*
+			 * String line = read.nextLine(); stringManager str = new stringManager(line);
+			 * outFile.write(str.countOp() + " operation\t"); outFile.write(line + "\n");
+			 * System.out.print(str.countOp() + " operation\t"); System.out.println(line);
+			 */
 		}
 		read.close();
 		workFile.close();
