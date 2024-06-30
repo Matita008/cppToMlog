@@ -9,7 +9,7 @@ public class removeComment {
 		while (read.hasNextLine()) {
 			String line = read.nextLine();
 			if (line.contains(start)) {
-				out.write(line.codePointBefore(line.indexOf(start)));
+    	out.write(line.codePointBefore(line.indexOf(start)));
 				while (!line.contains(end)) {
 					line = read.nextLine();
 				}
@@ -25,11 +25,10 @@ public class removeComment {
 		Scanner read = new Scanner(in);
 		while (read.hasNextLine()) {
 			String line = read.nextLine();
-			if (!line.startsWith(prefix))
+			if (line.contains(prefix))
+				out.write(line.codePointBefore(line.indexOf(start)));
+			else
 				out.write(line);
-			else if (line.contains(prefix))
-				out.write((String) line.subSequence(line.indexOf(prefix) + prefix.length(), line.length()));
-		}
 		read.close();
 		out.close();
 	}
