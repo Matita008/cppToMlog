@@ -29,6 +29,7 @@ public class removeComment {
 				out.write(line.codePointBefore(line.indexOf(start)));
 			else
 				out.write(line);
+}
 		read.close();
 		out.close();
 	}
