@@ -31,10 +31,13 @@ public class readFile {
 					workFileName = args[i];
 					break;
 				case "-?":
+				case "-help":
 					System.out.println("Guide:");
-					System.out.println("-in for the c++ file");
-					System.out.println("-out for the name of the output file (include .mlog)");
+					System.out.println("-in for the input file(if no extension is provided .cpp will be added)");
+					System.out.println(
+							"-out for the name of the output file (if no extension is provided .mlog will be added)");
 					System.out.println("-work for a workfile");
+					System.out.println("-?/-help it's this fabulous guide ;)");
 					stop = true;
 					break;
 				}
