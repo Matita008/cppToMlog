@@ -3,9 +3,9 @@
 
 #input/output file
 
-.cpp
-.mlog
-.txt
+*.cpp
+*.mlog
+*.txt
 
 #eclipse file
 
