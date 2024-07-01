@@ -38,12 +38,12 @@ public class varHandler {
 		}
 	}
 
-	public static int getVarScope(String name) {
+	public static int getScope(String name) {
 		return scope.get(name);
 	}
 
-	public static String getVarName(String name) {
-		return name + "_Scope" + scope.get(name) + "_" + getType(name);
+	public static String getName(String name) {
+		return name + "_" + scope.get(name) + "_" + getType(name);
 	}
 
 	public static boolean addVar(String name, int Type) {
