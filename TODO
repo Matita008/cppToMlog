@@ -1,0 +1,3 @@
+- better scoping handling (maphash of parents and child)
+- sensor handling
+- unit handling (ubind, ucontrol, ulocate & uradar)
