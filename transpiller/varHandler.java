@@ -3,49 +3,26 @@ package transpiller;
 import java.util.*;
 
 public class varHandler {
-	private static HashMap<String, Integer> scope = new HashMap<String, Integer>();
-	private static HashMap<String, Integer> type = new HashMap<String, Integer>();
-	@SuppressWarnings("unused")
+	private static ArrayList<String> name = new ArrayList<String>();
 	private static HashMap<Integer, ArrayList<Integer>> child = new HashMap<Integer, ArrayList<Integer>>();
 	private static HashMap<Integer, ArrayList<Integer>> parent1 = new HashMap<Integer, ArrayList<Integer>>();
 	private static int curScope = 0;
 	private static int maxScope = 0;
 
-	private static String getType(String varName) {
-		return getType(type.get(varName));
-	}
-
-	private static String getType(int n) {
-		switch (n) {
-		case 1:
-			return "Var"; // Generic type
-		case 2:
-			return "String";
-		case 3:
-			return "Bool";
-		case 4:
-			return "Object"; // Either unit reference or buliding reference
-		case 5:
-			return "Type";
-		case 6:
-			throw new RuntimeException(
-					"An error occured.\nHow unfortunate.\n\n\n\n\nReason: The array aren't handeld rn bc i want to focus onto the rest");
-		// return "Array"; //TODO Plz implement me ;)
-		case 7:
-			return "Int";
-		case 8:
-			return "Short";
-		case 9:
-			return "Long";
-		default:
-			throw new RuntimeException(
-					"An error occured.\nHow unfortunate.\n\n\n\n\nReason: Method getType in varHandler needs to get a valid number(1-9)");
+	private static Boolean isValideType(String type) {
+		if (type == "Array")
+			throw new RuntimeException("Arrays aren't supported rn bc i want to focus onto the rest");
+		// TODO Plz implement me ;)
+		if (type == "Var" || type == "String" || type == "Bool" || type == "Object" || type == "Type" || type == "Int"
+				|| type == "Short" || type == "Long") {
+			return true;
 		}
+		return false;
 	}
 
-	public static int getScope(String name) {
-		return scope.get(name);
-	}
+	/*
+	 * public static int getScope(String name) { return scope.get(name); }
+	 */// TODO Fix this
 
 	public static void newScope() {
 		ArrayList<Integer> c = new ArrayList<Integer>(child.get(curScope));
@@ -62,19 +39,36 @@ public class varHandler {
 		curScope = parent1.get(curScope).get(parent1.get(curScope).size() - 1);
 	}
 
-	public static String getName(String name) {
-		return name + "_" + scope.get(name) + "_" + getType(name);
+	public static String getName(String name, int Scope, String Type) {
+		if (!isValideType(Type) || Scope > maxScope)
+			throw new RuntimeException("an error occurred");// TODO
+		return name + "_" + Scope + "_" + Type;
 	}
 
-	public static boolean addVar(String name, int Type) {
+	public static boolean addVar(String name) {
+		return addVar(name, curScope, "Var");
+	}
+
+	public static boolean addVar(String name, String Type) {
 		return addVar(name, curScope, Type);
 	}
 
-	public static boolean addVar(String name, int Scope, int Type) {
-		if (scope.containsKey(name) || type.containsKey(name) || Scope > maxScope)
+	public static boolean addVar(String name, int Scope, String Type) {
+		if (!isValideType(Type) || Scope > maxScope)
 			return false;
-		scope.put(name, Scope);
-		type.put(name, Type);
+		name.add();
 		return true;
+	}
+
+	public static boolean exist(String name) {
+		return exist(name, curScope, 1);
+	}
+
+	public static boolean exist(String name, int Type) {
+		return exist(name, curScope, Type);
+	}
+
+	public static boolean exist(String name, int Scope, String Type) {
+		return !isValideType(Type) || Scope > maxScope || ;
 	}
 }

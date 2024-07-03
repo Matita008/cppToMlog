@@ -37,7 +37,7 @@ public class readFile {
 					System.out.println(
 							"-out for the name of the output file (if no extension is provided .mlog will be added)");
 					System.out.println("-work for a workfile");
-					System.out.println("-?/-help it's this fabulous guide ;)");
+					System.out.println("-help it's this fabulous guide ;)");
 					stop = true;
 					break;
 				}
