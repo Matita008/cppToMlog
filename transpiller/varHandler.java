@@ -5,6 +5,10 @@ import java.util.*;
 public class varHandler {
 	private static HashMap<String, Integer> scope = new HashMap<String, Integer>();
 	private static HashMap<String, Integer> type = new HashMap<String, Integer>();
+	@SuppressWarnings("unused")
+	private static HashMap<Integer, ArrayList<Integer>> child = new HashMap<Integer, ArrayList<Integer>>();
+	private static HashMap<Integer, ArrayList<Integer>> parent1 = new HashMap<Integer, ArrayList<Integer>>();
+	private static int curScope = 0;
 	private static int maxScope = 0;
 
 	private static String getType(String varName) {
@@ -13,7 +17,8 @@ public class varHandler {
 
 	private static String getType(int n) {
 		switch (n) {
-		case 1: // for char but i will handle them as string as for mlog it's the same
+		case 1:
+			return "Var"; // Generic type
 		case 2:
 			return "String";
 		case 3:
@@ -42,12 +47,27 @@ public class varHandler {
 		return scope.get(name);
 	}
 
+	public static void newScope() {
+		ArrayList<Integer> c = new ArrayList<Integer>(child.get(curScope));
+		c.add(curScope);
+		child.replace(curScope, child.get(curScope), c);
+		ArrayList<Integer> p = new ArrayList<Integer>(parent1.get(curScope));
+		p.add(curScope);
+		parent1.put(curScope, p);
+		maxScope++;
+		curScope = maxScope;
+	}
+
+	public static void closeScope() {
+		curScope = parent1.get(curScope).get(parent1.get(curScope).size() - 1);
+	}
+
 	public static String getName(String name) {
 		return name + "_" + scope.get(name) + "_" + getType(name);
 	}
 
 	public static boolean addVar(String name, int Type) {
-		return addVar(name, maxScope++, Type);
+		return addVar(name, curScope, Type);
 	}
 
 	public static boolean addVar(String name, int Scope, int Type) {
