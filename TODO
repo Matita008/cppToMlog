@@ -1,3 +1,6 @@
-- better scoping handling (maphash of parents and child)
+- better scoping (maphash of parents and child)
 - sensor handling
 - unit handling (ubind, ucontrol, ulocate & uradar)
+- single operation
+- multiple operation
+- operation inside parameter
