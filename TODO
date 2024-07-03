@@ -1,6 +1,10 @@
-- better scoping (maphash of parents and child)
+- better scoping (maphash of parents and child)  #done
 - sensor handling
 - unit handling (ubind, ucontrol, ulocate & uradar)
 - single operation
 - multiple operation
 - operation inside parameter
+
+
+
+- redo stringHandler
