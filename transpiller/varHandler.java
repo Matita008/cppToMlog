@@ -1,6 +1,7 @@
 package transpiller;
 
 import java.util.*;
+import utilities.*;
 
 public class varHandler {
 	private static ArrayList<String> name = new ArrayList<String>();
@@ -43,9 +44,10 @@ public class varHandler {
 	}
 
 	public static int getScope(String name) {
-		return name.substring(name.indexOf("_"), name.indexOf("_", name.indexOf("_") + 1));
+		stringManager s = new stringManager(
+				name.substring(name.indexOf("_"), name.indexOf("_", name.indexOf("_") + 1)));
+		return s.toInt();
 	}
-	// TODO Fix this
 
 	public static void newScope() {
 		ArrayList<Integer> c = new ArrayList<Integer>(child.get(curScope));
