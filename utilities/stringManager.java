@@ -26,6 +26,48 @@ public class stringManager {
 		return countOcc(ops, n, empty);
 	}
 
+	public final int toInt() {
+		int n = 0;
+		for (char c : data) {
+			int a;
+			switch (c) {
+			default:
+				a = 0;
+				break;
+			case '1':
+				a = 1;
+				break;
+			case '2':
+				a = 2;
+				break;
+			case '3':
+				a = 3;
+				break;
+			case '4':
+				a = 4;
+				break;
+			case '5':
+				a = 5;
+				break;
+			case '6':
+				a = 6;
+				break;
+			case '7':
+				a = 7;
+				break;
+			case '8':
+				a = 8;
+				break;
+			case '9':
+				a = 9;
+			}
+			if (a != 0)
+				n *= 10;
+			n += a;
+		}
+		return n;
+	}
+
 	public final int countOcc(char[][] value) {
 		return countOcc(value, value[0].length, ' ');
 	}
@@ -80,8 +122,9 @@ public class stringManager {
 			}
 		}
 		String error = "in " + dataSt + " weren't found any of the following: ";
-		for (char[] v : val)  {
-			for (char a : v)	error = error + a;
+		for (char[] v : val) {
+			for (char a : v)
+				error = error + a;
 			error = error + ",\n";
 		}
 		Throwable err = new Throwable(error);
@@ -104,7 +147,7 @@ public class stringManager {
 			if (done)
 				count++;
 		}
-		return count;
+		return count;// TODO ???????
 	}
 
 	public final void loadBaseOp() {

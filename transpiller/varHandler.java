@@ -9,20 +9,43 @@ public class varHandler {
 	private static int curScope = 0;
 	private static int maxScope = 0;
 
-	private static Boolean isValideType(String type) {
-		if (type == "Array") 
-			throw new RuntimeException("Arrays aren't supported rn bc i want to focus onto the rest");
-		// TODO Plz implement me ;)
-		if (type == "Var" || type == "String" || type == "Bool" || type == "Object" || type == "Type" || type == "Int"
-				|| type == "Short" || type == "Long") {
-			return true;
+	private static int getType(String Type) {
+		switch (Type.toLowerCase()) {
+		default:
+			return -1;
+		case "var":
+		case "":
+			return 0;
+		case "string":
+			return 1;
+		case "bool":
+		case "boolean":
+			return 2;
+		case "obj":
+		case "object":
+			return 3;
+		case "int":
+			return 4;
+		case "short":
+			return 5;
+		case "long":
+			return 6;
 		}
-		return false;
 	}
 
-	/*
-	 * public static int getScope(String name) { return scope.get(name); }
-	 */// TODO Fix this
+	private static Boolean isValideType(String type) {
+		if (getType(type) == -1)
+			return false;
+		else if (getType(type) == getType("array"))
+			System.out.println("Array aren't fully supported");
+		// TODO Plz implement me ;)
+		return true;
+	}
+
+	public static int getScope(String name) {
+		return name.substring(name.indexOf("_"), name.indexOf("_", name.indexOf("_") + 1));
+	}
+	// TODO Fix this
 
 	public static void newScope() {
 		ArrayList<Integer> c = new ArrayList<Integer>(child.get(curScope));
@@ -42,7 +65,8 @@ public class varHandler {
 	public static String getName(String name, int Scope, String Type) {
 		if (!isValideType(Type) || Scope > maxScope || name.replace(" ", "") == "" || name.contains("_"))
 			throw new RuntimeException("an error occurred");// TODO
-		return name.replace(" ", "") + (curScope == 0 ? "" : "_" + Scope) + ( Type == "" || Type == null ? "" : "_" + Type);
+		return name.replace(" ", "") + (curScope == 0 ? "" : "_" + Scope)
+				+ (Type == "" || Type == null ? "" : "_" + Type);
 	}
 
 	public static boolean addVar(String name) {
@@ -61,10 +85,10 @@ public class varHandler {
 	}
 
 	public static boolean exist(String name) {
-		return exist(name, curScope, 1);
+		return exist(name, curScope, "var");
 	}
 
-	public static boolean exist(String name, int Type) {
+	public static boolean exist(String name, String Type) {
 		return exist(name, curScope, Type);
 	}
 
