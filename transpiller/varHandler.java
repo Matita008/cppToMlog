@@ -65,11 +65,13 @@ public class varHandler {
 		return true;
 	}
 
+//$name_(1-9)_
 	public static int getScope (String name) {// TODO doesn't account for all possible cases
 		stringManager s = new stringManager(name);
 		if (s.countOcc("_") == 2) {
-			String[] a = s.getSt().splitWithDelimiters("_", 2);
-			if (a.length == 3) s.set(a[1]);
+			String[] a = s.getSt().splitWithDelimiters("_", 3);
+			if (a.length == 5) s.set(a[1]);
+			else if (a[1] == "__") s.set("0");
 			return s.toInt();
 		}
 		return -1;
@@ -90,7 +92,8 @@ public class varHandler {
 		curScope = parent.get(curScope).get(parent.get(curScope).size() - 1);
 	}
 
-	public static String getName (String name, int Scope, String Type) {
+	@SuppressWarnings ("unused")
+	private static String getFullName (String name, int Scope, String Type) {
 		if (!isValideType(Type) || Scope > maxScope || name.replace(" ", "") == "" || name.contains("_")) throw new RuntimeException("an error occurred");// TODO
 		return name.replace(" ", "") + "_" + (curScope == 0 ? "" : Scope) + (Type == "" || Type.toLowerCase() == "var" || Type == null ? "" : "_" + Type);
 	}
@@ -103,9 +106,12 @@ public class varHandler {
 		return addVar(name, curScope, Type);
 	}
 
-	public static boolean addVar (String name, int Scope, String Type) {
-		if (!isValideType(Type) || Scope > maxScope) return false;
+	public static boolean addVar (String n, int s, String t) {
+		if (!isValideType(t) || s > maxScope) return false;
 		// name.add(); //TODO
+		if (name.containsKey(s)) {
+			if (name.get(s).contains(getFullName(n, s, t))) return false;
+		}
 		return true;
 	}
 
