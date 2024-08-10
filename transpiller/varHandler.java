@@ -4,6 +4,7 @@ import java.util.*;
 import utilities.*;
 
 public class varHandler {
+	@SuppressWarnings ("unused")
 	private static HashMap <Integer, ArrayList <String>> name = new HashMap <Integer, ArrayList <String>>();
 	public static HashMap <Integer, ArrayList <Integer>> child = new HashMap <Integer, ArrayList <Integer>>();
 	public static HashMap <Integer, ArrayList <Integer>> parent = new HashMap <Integer, ArrayList <Integer>>();
@@ -34,6 +35,29 @@ public class varHandler {
 		}
 	}
 
+	@SuppressWarnings ("unused")
+	private static String getType (int n) {
+		switch (n) {
+			default:
+			case -1:
+				return "unsupported";
+			case 0:
+				return "var";
+			case 1:
+				return "string";
+			case 2:
+				return "bool";
+			case 3:
+				return "object";
+			case 4:
+				return "int";
+			case 5:
+				return "short";
+			case 6:
+				return "long";
+		}
+	}
+
 	private static Boolean isValideType (String type) {
 		if (getType(type) == -1) return false;
 		else if (getType(type) == getType("array")) System.out.println("Array aren't fully supported");
@@ -42,7 +66,9 @@ public class varHandler {
 	}
 
 	public static int getScope (String name) {
-		stringManager s = new stringManager(name.substring(name.indexOf("_"), name.indexOf("_", name.indexOf("_") + 1)));// TODO doesn't account for all possible cases
+		stringManager s = new stringManager(name);// TODO doesn't account for all possible cases
+		String[] a = s.getSt().splitWithDelimiters("_", 2);
+		if (a.length == 3) s.set(a[1]);
 		return s.toInt();
 	}
 
@@ -76,7 +102,7 @@ public class varHandler {
 
 	public static boolean addVar (String name, int Scope, String Type) {
 		if (!isValideType(Type) || Scope > maxScope) return false;
-		name.add();
+		// name.add(); //TODO
 		return true;
 	}
 
@@ -89,6 +115,6 @@ public class varHandler {
 	}
 
 	public static boolean exist (String name, int Scope, String Type) {
-		return !isValideType(Type) || Scope > maxScope || false;
+		return ! (isValideType(Type) || Scope > maxScope) || false;
 	}
 }
