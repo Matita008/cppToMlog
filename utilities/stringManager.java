@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.*;
+import java.util.stream.*;
 import java.io.*;
 //import utilities.converter;
 
@@ -65,10 +66,7 @@ public class stringManager {
 	}
 
 	public final int countOcc (String[] value) {
-		int m = 1;
-		for (String v : value) if (v.length() >= m) m = v.length();
-		char[][] a = new char[value.length][m];
-		for (int i = 0; i < value.length; i++) a[i] = value[i].toCharArray();
+		char[][] a = Arrays.stream(value).map(s -> s.toCharArray()).toArray(char[][]::new);
 		return countOcc(a);
 	}
 
