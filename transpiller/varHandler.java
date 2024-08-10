@@ -92,9 +92,17 @@ public class varHandler {
 		curScope = parent.get(curScope).get(parent.get(curScope).size() - 1);
 	}
 
-	@SuppressWarnings ("unused")
+	public static Boolean testName (String n, int s, String t) {
+		if (!isValideType(t) || s > maxScope || n.replace(" ", "") == "" || n.contains("_")) return false;
+		return true;
+	}
+
+	private static String compType (String t) {
+		return t == "var" ? "" : t;
+	}
+
 	private static String getFullName (String name, int Scope, String Type) {
-		if (!isValideType(Type) || Scope > maxScope || name.replace(" ", "") == "" || name.contains("_")) throw new RuntimeException("an error occurred");// TODO
+		if (testName(name, Scope, Type)) throw new RuntimeException("an error occurred");// TODO add custom error message
 		return name.replace(" ", "") + "_" + (curScope == 0 ? "" : Scope) + (Type == "" || Type.toLowerCase() == "var" || Type == null ? "" : "_" + Type);
 	}
 
@@ -107,11 +115,16 @@ public class varHandler {
 	}
 
 	public static boolean addVar (String n, int s, String t) {
-		if (!isValideType(t) || s > maxScope) return false;
+		if (testName(n, s, t)) return false;
 		// name.add(); //TODO
+		ArrayList <String> a = new ArrayList <String>();
 		if (name.containsKey(s)) {
-			if (name.get(s).contains(getFullName(n, s, t))) return false;
+			a = name.get(s);
+			if (a.contains(getFullName(n, s, t))) return false;
+			a.removeIf(st -> st.contains(n) && st.contains(compType(t)));
 		}
+		a.add(getFullName(n, s, t));
+		name.put(s, a);
 		return true;
 	}
 
