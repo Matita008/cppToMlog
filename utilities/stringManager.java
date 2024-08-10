@@ -60,6 +60,23 @@ public class stringManager {
 		return n;
 	}
 
+	public final int countOcc (String value) {
+		return countOcc(value.toCharArray());
+	}
+
+	public final int countOcc (String[] value) {
+		int m = 1;
+		for (String v : value) if (v.length() >= m) m = v.length();
+		char[][] a = new char[value.length][m];
+		for (int i = 0; i < value.length; i++) a[i] = value[i].toCharArray();
+		return countOcc(a);
+	}
+
+	public final int countOcc (char[] value) {
+		char[][] v = { value };
+		return countOcc(v, value.length, ' ');
+	}
+
 	public final int countOcc (char[][] value) {
 		return countOcc(value, value[0].length, ' ');
 	}
@@ -88,14 +105,14 @@ public class stringManager {
 				boolean found = true;
 				for (int n = 0; n < nChar; n++) {
 					if (value[k][n] == any) continue;
-					if (! (value[k][n] == this.data[i + n])) {
+					if (value[k][n] != this.data[i + n]) {
 						found = false;
 						break;
 					}
 				}
 				if (found) {
 					count++;
-					i = i + nChar - 2;
+					i = i + nChar - 2;// TODO is this necessary?
 					break;
 				}
 			}
@@ -142,5 +159,10 @@ public class stringManager {
 		op.add(" / ");
 		op.add("<< ");
 		op.add(">> ");
+	}
+
+	@Override
+	public final String toString () {
+		return dataSt;
 	}
 }
