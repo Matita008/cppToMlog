@@ -65,17 +65,20 @@ public class varHandler {
 		return true;
 	}
 
-	public static int getScope (String name) {
-		stringManager s = new stringManager(name);// TODO doesn't account for all possible cases
-		String[] a = s.getSt().splitWithDelimiters("_", 2);
-		if (a.length == 3) s.set(a[1]);
-		return s.toInt();
+	public static int getScope (String name) {// TODO doesn't account for all possible cases
+		stringManager s = new stringManager(name);
+		if (s.countOcc("_") == 2) {
+			String[] a = s.getSt().splitWithDelimiters("_", 2);
+			if (a.length == 3) s.set(a[1]);
+			return s.toInt();
+		}
+		return -1;
 	}
 
 	public static void newScope () {
 		ArrayList <Integer> c = new ArrayList <Integer>(child.get(curScope));
 		c.add(curScope);
-		child.replace(curScope, child.get(curScope), c);
+		child.put(curScope, c);
 		ArrayList <Integer> p = new ArrayList <Integer>(parent.get(curScope));
 		p.add(curScope);
 		parent.put(curScope, p);
