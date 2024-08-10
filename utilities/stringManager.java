@@ -5,17 +5,30 @@ import java.io.*;
 //import utilities.converter;
 
 public class stringManager {
-	String dataSt;
-	char[] data;
-	int length;
+	private String dataSt;
+	private char[] data;
 	int opLength = 3;
 	ArrayList <String> op = new ArrayList <String>();
 
 	public stringManager (String data) {
 		this.dataSt = data;
-		this.length = data.length();
+		data.length();
 		this.data = this.dataSt.toCharArray();
 		loadBaseOp();
+	}
+
+	public final String getSt () { return dataSt; }
+
+	public final char[] getCharA () { return data; }
+
+	public final void set (String in) {
+		dataSt = in;
+		data = in.toCharArray();
+	}
+
+	public final void set (char[] in) {
+		dataSt = in.toString();
+		data = in;
 	}
 
 	public final int countOp () {
@@ -70,7 +83,7 @@ public class stringManager {
 
 	public final int countOcc (char[][] value, int nChar, char any) {
 		int count = 0;
-		for (int i = 0; i < length - nChar + 1; i++) {
+		for (int i = 0; i < dataSt.length() - nChar + 1; i++) {
 			for (int k = 0; k < value.length; k++) {
 				boolean found = true;
 				for (int n = 0; n < nChar; n++) {
@@ -91,7 +104,7 @@ public class stringManager {
 	}
 
 	public final int getPos (char[][] val) {
-		for (int i = 0; i < length - val[0].length; i++) {
+		for (int i = 0; i < dataSt.length() - val[0].length; i++) {
 			for (int n = 0; n < val.length; n++) {
 				if (val[i][n] != this.data[i + n]) n = val.length + 1;
 				else if (n == val.length) return i;
@@ -108,7 +121,7 @@ public class stringManager {
 
 	public final int getOpPos (int index) {
 		var count = 0/* ,rtn = 0 */;
-		for (int i = 0; i < length - 3; i++) {
+		for (int i = 0; i < dataSt.length() - 3; i++) {
 			boolean done = false;
 			for (String opSt : op) {
 				char[] val = opSt.toCharArray();
