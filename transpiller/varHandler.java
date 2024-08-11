@@ -136,7 +136,10 @@ public class varHandler {
 		return exist(name, curScope, Type);
 	}
 
-	public static boolean exist (String name, int Scope, String Type) {
-		return ! (isValideType(Type) || Scope > maxScope) || false;
+	public static boolean exist (String n,int s, String t) {
+		return !isValideType(t) || s > maxScope || false;//!name.containsKey(s) || !name.get(s).contains(getFullName(n, s, t));
 	}
+public static String toString(){
+return name+"/nscope: children:"+child+" parent: "+parent;
+}
 }
