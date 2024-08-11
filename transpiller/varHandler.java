@@ -65,7 +65,6 @@ public class varHandler {
 		return true;
 	}
 
-//$name_(1-9)_
 	public static int getScope (String name) {// TODO doesn't account for all possible cases
 		stringManager s = new stringManager(name);
 		if (s.countOcc("_") == 2) {
@@ -116,7 +115,6 @@ public class varHandler {
 
 	public static boolean addVar (String n, int s, String t) {
 		if (testName(n, s, t)) return false;
-		// name.add(); //TODO
 		ArrayList <String> a = new ArrayList <String>();
 		if (name.containsKey(s)) {
 			a = name.get(s);
