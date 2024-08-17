@@ -1,10 +1,11 @@
 - better scoping (maphash of parents and child)  #done
+- formatter
 - sensor handling
 - unit handling (ubind, ucontrol, ulocate & uradar)
 - single operation
 - multiple operation
 - operation inside parameter
 
+- redo removeComment so it uses String[] by default
 
-
-- redo stringManager (every var is a object)
+- redo stringManager (every var is a object) -> better or not?

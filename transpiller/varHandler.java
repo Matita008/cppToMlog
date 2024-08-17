@@ -4,58 +4,40 @@ import java.util.*;
 import utilities.*;
 
 public class varHandler {
-	@SuppressWarnings ("unused")
-	private static HashMap <Integer, ArrayList <String>> name = new HashMap <Integer, ArrayList <String>>();
-	public static HashMap <Integer, ArrayList <Integer>> child = new HashMap <Integer, ArrayList <Integer>>();
-	public static HashMap <Integer, ArrayList <Integer>> parent = new HashMap <Integer, ArrayList <Integer>>();
+	private static HashMap <Integer, ArrayList <String>> name = new HashMap <>();
+	public static HashMap <Integer, ArrayList <Integer>> child = new HashMap <>();
+	public static HashMap <Integer, ArrayList <Integer>> parent = new HashMap <>();
 	private static int curScope = 0;
 	private static int maxScope = 0;
 
 	private static int getType (String Type) {
-		switch (Type.toLowerCase()) {
-			default:
-				return -1;
-			case "var":
-			case "":
-				return 0;
-			case "string":
-				return 1;
-			case "bool":
-			case "boolean":
-				return 2;
-			case "obj":
-			case "object":
-				return 3;
-			case "int":
-				return 4;
-			case "short":
-				return 5;
-			case "long":
-				return 6;
-		}
+		return switch (Type.toLowerCase()) {
+			default -> -1;
+			case "var" -> 0;
+			case "" -> 0;
+			case "string" -> 1;
+			case "bool" -> 2;
+			case "boolean" -> 2;
+			case "obj" -> 3;
+			case "object" -> 3;
+			case "int" -> 4;
+			case "short" -> 5;
+			case "long" -> 6;
+		};
 	}
 
 	@SuppressWarnings ("unused")
 	private static String getType (int n) {
-		switch (n) {
-			default:
-			case -1:
-				return "unsupported";
-			case 0:
-				return "var";
-			case 1:
-				return "string";
-			case 2:
-				return "bool";
-			case 3:
-				return "object";
-			case 4:
-				return "int";
-			case 5:
-				return "short";
-			case 6:
-				return "long";
-		}
+		return switch (n) {
+			default -> "unsupported";
+			case 0 -> "var";
+			case 1 -> "string";
+			case 2 -> "bool";
+			case 3 -> "object";
+			case 4 -> "int";
+			case 5 -> "short";
+			case 6 -> "long";
+		};
 	}
 
 	private static Boolean isValideType (String type) {
@@ -77,10 +59,10 @@ public class varHandler {
 	}
 
 	public static void newScope () {
-		ArrayList <Integer> c = new ArrayList <Integer>(child.get(curScope));
+		ArrayList <Integer> c = new ArrayList <>(child.get(curScope));
 		c.add(curScope);
 		child.put(curScope, c);
-		ArrayList <Integer> p = new ArrayList <Integer>(parent.get(curScope));
+		ArrayList <Integer> p = new ArrayList <>(parent.get(curScope));
 		p.add(curScope);
 		parent.put(curScope, p);
 		maxScope++;
@@ -100,22 +82,26 @@ public class varHandler {
 		return t == "var" ? "" : t;
 	}
 
-	private static String getFullName (String name, int Scope, String Type) {
-		if (testName(name, Scope, Type)) throw new RuntimeException("an error occurred");// TODO add custom error message
-		return name.replace(" ", "") + "_" + (curScope == 0 ? "" : Scope) + (Type == "" || Type.toLowerCase() == "var" || Type == null ? "" : "_" + Type);
+	private static String getFullName (String n, int Scope, String Type) {
+		if (testName(n, Scope, Type)) throw new RuntimeException("an error occurred");// TODO add custom error message
+		return n.replace(" ", "") + "_" + (curScope == 0 ? "" : Scope) + (Type == "" || Type.toLowerCase() == "var" || Type == null ? "" : "_" + Type);
 	}
 
-	public static boolean addVar (String name) {
-		return addVar(name, curScope, "Var");
+	public static boolean addVar (String n) {
+		return addVar(n, curScope, "Var");
 	}
 
-	public static boolean addVar (String name, String Type) {
-		return addVar(name, curScope, Type);
+	public static boolean addVar (String n, String t) {
+		return addVar(n, curScope, t);
+	}
+
+	public static boolean addVar (String n, int s) {
+		return addVar(n, s, "var");
 	}
 
 	public static boolean addVar (String n, int s, String t) {
 		if (testName(n, s, t)) return false;
-		ArrayList <String> a = new ArrayList <String>();
+		ArrayList <String> a = new ArrayList <>();
 		if (name.containsKey(s)) {
 			a = name.get(s);
 			if (a.contains(getFullName(n, s, t))) return false;
@@ -126,18 +112,20 @@ public class varHandler {
 		return true;
 	}
 
-	public static boolean exist (String name) {
-		return exist(name, curScope, "var");
+	public static boolean exist (String n) {
+		return exist(n, curScope, "var");
 	}
 
-	public static boolean exist (String name, String Type) {
-		return exist(name, curScope, Type);
+	public static boolean exist (String n, String Type) {
+		return exist(n, curScope, Type);
 	}
 
-	public static boolean exist (String n,int s, String t) {
-		return !isValideType(t) || s > maxScope || false;//!name.containsKey(s) || !name.get(s).contains(getFullName(n, s, t));
+	public static boolean exist (String n, int s, String t) {
+		return !isValideType(t) || s > maxScope || name.containsKey(s) ? name.get(s).contains(getFullName(n, s, t)) : false;
 	}
-public static String toString(){
-return name+"/nscope: children:"+child+" parent: "+parent;
-}
+
+	@Override
+	public String toString () {
+		return name + "/n/tscopes: children:" + child + " parent: " + parent + " current scope selected:" + curScope + " maxium scope:" + maxScope;
+	}
 }
