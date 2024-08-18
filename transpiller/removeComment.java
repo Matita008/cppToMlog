@@ -3,6 +3,8 @@ package transpiller;
 import java.io.*;
 import java.util.*;
 
+//TODO redo it all to work with string arrays and why i've used //TODO NO.???
+
 public class removeComment {
 	/*
 	 * public static void main (String[] args) throws Exception {
@@ -18,7 +20,7 @@ public class removeComment {
 			String line = read.nextLine();
 			if (line.contains(start)) {
 				line = line + 1;
-				out.write(line.codePointBefore(line.indexOf(start) <= 1 || line.indexOf(start) + 1 >= line.length() ? 2 : line.indexOf(start) + 1) + "\n");
+				out.write(line.//TODO NO.(line.indexOf(start) <= 1 || line.indexOf(start) + 1 >= line.length() ? 2 : line.indexOf(start) + 1) + "\n");
 				while (!line.contains(end)) {
 					line = read.nextLine();
 				}
