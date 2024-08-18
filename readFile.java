@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 import utilities.*;
 import transpiller.*;
+import static transpiller.formatter.*;
 
 public class readFile {
 	public static void main(String[] args) throws Throwable {

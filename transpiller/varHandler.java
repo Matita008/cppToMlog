@@ -23,10 +23,10 @@ public class varHandler {
 			case "int" -> 4;
 			case "short" -> 5;
 			case "long" -> 6;
+			case "array" -> 10;
 		};
 	}
 
-	@SuppressWarnings ("unused")
 	private static String getType (int n) {
 		return switch (n) {
 			default -> "unsupported";
@@ -37,18 +37,19 @@ public class varHandler {
 			case 4 -> "int";
 			case 5 -> "short";
 			case 6 -> "long";
+			case 10 -> "array";
 		};
 	}
 
 	private static Boolean isValideType (String type) {
 		if (getType(type) == -1) return false;
-		else if (getType(type) == getType("array")) System.out.println("Array aren't fully supported");
+		else if (getType(type) == 10) System.out.println("Array aren't fully supported");
 		// TODO Plz implement me ;)
 		return true;
 	}
 
-	public static int getScope (String name) {// TODO doesn't account for all possible cases
-		stringManager s = new stringManager(name);
+	public static int getScope (String n) {// TODO doesn't account for all possible cases
+		stringManager s = new stringManager(n);
 		if (s.countOcc("_") == 2) {
 			String[] a = s.getSt().splitWithDelimiters("_", 3);
 			if (a.length == 5) s.set(a[1]);
@@ -105,6 +106,7 @@ public class varHandler {
 		if (name.containsKey(s)) {
 			a = name.get(s);
 			if (a.contains(getFullName(n, s, t))) return false;
+			if (a.contains(n) & getType(t) != 0) throw new RuntimeException();// TODO
 			a.removeIf(st -> st.contains(n) && st.contains(compType(t)));
 		}
 		a.add(getFullName(n, s, t));
