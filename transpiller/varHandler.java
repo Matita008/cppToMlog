@@ -27,6 +27,7 @@ public class varHandler {
 		};
 	}
 
+	@SuppressWarnings ("unused")
 	private static String getType (int n) {
 		return switch (n) {
 			default -> "unsupported";

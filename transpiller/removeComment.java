@@ -42,6 +42,14 @@ public class removeComment {
 		out.close();
 	}
 
+	public static String[] SingleLane (String[] st, String prefix) {
+		StringBuilder out = new StringBuilder();
+		for (String line : st) {
+			if (line.contains(prefix)) out.append(line.substring(line.indexOf(prefix)) + "\n");
+			else out.append(line + "\n");
+		}
+		return out.toString().split("\n");
+	}
 	/*
 	 * public static String[] SingleLane (String[] st, String prefix, boolean keep)
 	 * { List <String> out; for (String line : st) { if (line.contains(prefix))

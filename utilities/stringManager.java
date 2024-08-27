@@ -8,32 +8,33 @@ public class stringManager {
 	private String dataSt;
 	private char[] data;
 	int opLength = 3;
-	ArrayList <String> op = new ArrayList <String>();
+	ArrayList <String> op = new ArrayList <>();
 
-	public stringManager (String data) {
+	public stringManager (@SuppressWarnings ("hiding")
+	String data) {
 		this.dataSt = data;
 		data.length();
 		this.data = this.dataSt.toCharArray();
 		loadBaseOp();
 	}
 
-	public final String getSt () { return dataSt; }
+	public final String getSt () { return this.dataSt; }
 
-	public final char[] getCharA () { return data; }
+	public final char[] getCharArr () { return this.data; }
 
 	public final void set (String in) {
-		dataSt = in;
-		data = in.toCharArray();
+		this.dataSt = in;
+		this.data = in.toCharArray();
 	}
 
 	public final void set (char[] in) {
-		dataSt = in.toString();
-		data = in;
+		this.dataSt = in.toString();
+		this.data = in;
 	}
 
 	public final int countOp () {
 		char empty = ' ';
-		int n = opLength;
+		int n = this.opLength;
 		@SuppressWarnings ("unchecked")
 		char[][] ops = converter.toChar((ArrayList <String>) this.op.clone());
 		return countOcc(ops, n, empty);
@@ -41,7 +42,7 @@ public class stringManager {
 
 	public final int toInt () {
 		int n = 0;
-		for (char c : data) {
+		for (char c : this.data) {
 			int a = switch (c) {
 				default -> 0;
 				case '1' -> 1;
@@ -97,7 +98,7 @@ public class stringManager {
 
 	public final int countOcc (char[][] value, int nChar, char any) {
 		int count = 0;
-		for (int i = 0; i < dataSt.length() - nChar + 1; i++) {
+		for (int i = 0; i < this.dataSt.length() - nChar + 1; i++) {
 			for (int k = 0; k < value.length; k++) {
 				boolean found = true;
 				for (int n = 0; n < nChar; n++) {
@@ -118,13 +119,13 @@ public class stringManager {
 	}
 
 	public final int getPos (char[][] val) {
-		for (int i = 0; i < dataSt.length() - val[0].length; i++) {
+		for (int i = 0; i < this.dataSt.length() - val[0].length; i++) {
 			for (int n = 0; n < val.length; n++) {
 				if (val[i][n] != this.data[i + n]) n = val.length + 1;
 				else if (n == val.length) return i;
 			}
 		}
-		String error = "in " + dataSt + " weren't found any of the following: ";
+		String error = "in " + this.dataSt + " weren't found any of the following: ";
 		for (char[] v : val) {
 			for (char a : v) error = error + a;
 			error = error + ",\n";
@@ -135,9 +136,9 @@ public class stringManager {
 
 	public final int getOpPos (int index) {
 		var count = 0/* ,rtn = 0 */;
-		for (int i = 0; i < dataSt.length() - 3; i++) {
+		for (int i = 0; i < this.dataSt.length() - 3; i++) {
 			boolean done = false;
-			for (String opSt : op) {
+			for (String opSt : this.op) {
 				char[] val = opSt.toCharArray();
 				for (int n = 0; n < 3; n++) {
 					if (done || val[n] != this.data[i + n]) n = 3 + 1;
@@ -150,16 +151,16 @@ public class stringManager {
 	}
 
 	public final void loadBaseOp () {
-		op.add(" + ");
-		op.add(" - ");
-		op.add(" * ");
-		op.add(" / ");
-		op.add("<< ");
-		op.add(">> ");
+		this.op.add(" + ");
+		this.op.add(" - ");
+		this.op.add(" * ");
+		this.op.add(" / ");
+		this.op.add("<< ");
+		this.op.add(">> ");
 	}
 
 	@Override
 	public final String toString () {
-		return dataSt;
+		return this.dataSt;
 	}
 }
