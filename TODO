@@ -8,4 +8,6 @@
 
 - redo removeComment so it uses String[] by default
 
+- do jsonReader
+
 - redo stringManager (every var is a object) -> better or not?
