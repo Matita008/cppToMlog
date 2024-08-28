@@ -42,6 +42,27 @@ public class removeComment {
 		out.close();
 	}
 
+	public static String[] MultiLane (String[] st, String start, String end) {
+		StringBuilder out = new StringBuilder();
+		boolean in = false;
+		for (String line : st) {
+			int s = 0;
+			if (line.contains(start) && !in) {
+				s = line.indexOf(start);
+				in = true;
+			}
+			if (in) {
+				if (s != 0 || line.contains(end)) out.append(line.substring(s, line.indexOf(end) != -1 ? line.indexOf(end) : line.length()+
+						) + "\n");
+				if (line.contains(end)) in = false;
+				continue;
+			}
+			out.append(line + "\n");
+		}
+		return out.toString().split("\n");
+
+	}
+
 	public static String[] SingleLane (String[] st, String prefix) {
 		StringBuilder out = new StringBuilder();
 		for (String line : st) {
