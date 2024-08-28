@@ -1,10 +1,5 @@
 package transpiller;
 
-import java.io.*;
-import java.util.*;
-
-//TODO redo it all to work with string arrays and why i've used //TODO NO.???
-
 public class removeComment {
 	/*
 	 * public static void main (String[] args) throws Exception {
@@ -14,7 +9,7 @@ public class removeComment {
 	 * MultiLane(b, new FileWriter("String.java")); }
 	 */
 
-	public static String[] MultiLane (String[] st, String start, String end) {
+	public static String MultiLane0 (String[] st, String start, String end) {
 		StringBuilder out = new StringBuilder();
 		boolean in = false;
 		for (String line : st) {
@@ -24,38 +19,46 @@ public class removeComment {
 				in = true;
 			}
 			if (in) {
-				if (s != 0 || line.contains(end)) out.append(line.substring(s, line.indexOf(end) != -1 ? line.indexOf(end) : line.length()+
-						) + "\n");
+				if (s != 0 || line.contains(end)) out.append(line.substring(s, line.indexOf(end) != -1 ? line.indexOf(end) : line.length()) + "\n");
 				if (line.contains(end)) in = false;
 				continue;
 			}
 			out.append(line + "\n");
 		}
-		return out.toString().split("\n");
+		return out.toString();
 
 	}
 
-	public static String[] SingleLane (String[] st, String prefix) {
+	public static String SingleLane0 (String[] st, String prefix) {
 		StringBuilder out = new StringBuilder();
 		for (String line : st) {
 			if (line.contains(prefix)) out.append(line.substring(line.indexOf(prefix)) + "\n");
 			else out.append(line + "\n");
 		}
-		return out.toString().split("\n");
-	}
-	/*
-	 * public static String[] SingleLane (String[] st, String prefix, boolean keep)
-	 * { List <String> out; for (String line : st) { if (line.contains(prefix))
-	 * out.add(line.substring(0, line.indexOf(prefix)) + (keep ?
-	 * line.substring(line.indexOf(prefix)) : "")); else out.add(line + ""); }
-	 * return (String[]) out.toArray(); }
-	 */// TODO
-
-	public static void MultiLane (String[] st) throws Exception {
-		MultiLane(st, "/*", "*/");
+		return out.toString();
 	}
 
-	public static void SingleLane (String[] st) throws Exception {
-		SingleLane(st, "//");
+	public static String[] MultiLane (String[] st, String start, String end) {
+		return MultiLane0(st, start, end).split("\n");
+	}
+
+	public static String[] MultiLane (String[] st) {
+		return MultiLane0(st, "/*", "*/").split("\n");
+	}
+
+	public static String MultiLane0 (String[] st) {
+		return MultiLane0(st, "/*", "*/");
+	}
+
+	public static String[] SingleLane (String[] st, String prefix) {
+		return SingleLane0(st, prefix).split("\n");
+	}
+
+	public static String[] SingleLane (String[] st) {
+		return SingleLane0(st, "//").split("\n");
+	}
+
+	public static String SingleLane0 (String[] st) {
+		return SingleLane0(st, "//");
 	}
 }
