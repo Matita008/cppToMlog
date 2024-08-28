@@ -14,34 +14,6 @@ public class removeComment {
 	 * MultiLane(b, new FileWriter("String.java")); }
 	 */
 
-	public static void MultiLane (File in, FileWriter out, String start, String end) throws IOException {
-		Scanner read = new Scanner(in);
-		while (read.hasNextLine()) {
-			String line = read.nextLine();
-			if (line.contains(start)) {
-				line = line + 1;
-				out.write(line.//TODO NO.(line.indexOf(start) <= 1 || line.indexOf(start) + 1 >= line.length() ? 2 : line.indexOf(start) + 1) + "\n");
-				while (!line.contains(end)) {
-					line = read.nextLine();
-				}
-				out.write((String) line.subSequence(line.indexOf(end) + end.length(), line.length()) + "\n");
-			} else out.write(line + "\n");
-		}
-		read.close();
-		out.close();
-	}
-
-	public static void SingleLane (File in, FileWriter out, String prefix) throws IOException {
-		Scanner read = new Scanner(in);
-		while (read.hasNextLine()) {
-			String line = read.nextLine();
-			if (line.contains(prefix)) out.write(line.codePointBefore(line.indexOf(prefix)) + "\n");
-			else out.write(line + "\n");
-		}
-		read.close();
-		out.close();
-	}
-
 	public static String[] MultiLane (String[] st, String start, String end) {
 		StringBuilder out = new StringBuilder();
 		boolean in = false;
@@ -79,11 +51,11 @@ public class removeComment {
 	 * return (String[]) out.toArray(); }
 	 */// TODO
 
-	public static void MultiLane (File in, FileWriter out) throws Exception {
-		MultiLane(in, out, "/*", "*/");
+	public static void MultiLane (String[] st) throws Exception {
+		MultiLane(st, "/*", "*/");
 	}
 
-	public static void SingleLane (File in, FileWriter out) throws Exception {
-		SingleLane(in, out, "//");
+	public static void SingleLane (String[] st) throws Exception {
+		SingleLane(st, "//");
 	}
 }
