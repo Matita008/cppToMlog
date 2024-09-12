@@ -21,28 +21,16 @@ public final class jsonReader {
 }
 
 interface jData {
-	/**
-	 * @param s the string to elaborate (it will trash code after all the
-	 *          parenthesis are closed)
-	 */
-
-	Object get ();
-	jData load();
+	String unused;
+	default String unused(){
+	 	return unused;
+	}
 }
 
 final class jMap implements jData {
-
-	public static jData load (String s) {
+	public jMap (String s) {
 		// TODO Auto-generated method stub
-		return null;
 	}
-
-	@Override
-	public jData get () {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
 
 final class jArr implements jData {
