@@ -5,7 +5,7 @@ import java.util.*;
 
 public final class jsonReader {
 	@SuppressWarnings ("unused")
-	private HashMap <String, jData> content = new HashMap <>();
+	private HashMap <String, jData> content = new HashMap <>(); //TODO why?
 
 	/*
 	 * public jsonReader(File file (String name)-> {File file = new File(name)}) {
