@@ -34,18 +34,9 @@ final class jMap implements jData {
 }
 
 final class jArr implements jData {
-	@Override
-	public static jData load (String s) {
+	public jArr (String s) {
 		// TODO Auto-generated method stub
-		return null;
 	}
-
-	@Override
-	public jData get () {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
 
 abstract class jVar implements jData {
