@@ -28,9 +28,13 @@ interface jData {
 }
 
 final class jMap implements jData {
+private HashMap <String, jData> d = new HashMap <>();
 	public jMap (String s) {
 		// TODO Auto-generated method stub
 	}
+public String get(String key){
+  return d.get(key);
+  }
 }
 
 final class jArr implements jData {
