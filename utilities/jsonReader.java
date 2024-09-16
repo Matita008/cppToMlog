@@ -25,6 +25,9 @@ interface jData {
 	default String unused(){
 	 	return unused;
 	}
+	public jData scan(String d){
+		if(d.startWith('{')) return new jMap(d);
+	}
 }
 
 final class jMap implements jData {
