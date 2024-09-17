@@ -1,99 +1,89 @@
 package utilities;
 
 import java.util.*;
-//import java.io.*;
 
 public final class jsonReader {
 	@SuppressWarnings ("unused")
 	private HashMap <String, jData> content = new HashMap <>();
 
-	/*
-	 * public jsonReader(File file (String name)-> {File file = new File(name)}) {
-	 * this(file); }
-	 */
-
-	/*
-	 * public jsonReader(File file) throws FileNotFoundException { this.file = file;
-	 * scanFile(); } private void scanFile() throws FileNotFoundException { Scanner
-	 * scanner = new Scanner(file); scanFile(scanner); } private void
-	 * scanFile(Scanner scanner) { }
-	 */
 }
 
 interface jData {
-	/**
-	 * @param s the string to elaborate (it will trash code after all the
-	 *          parenthesis are closed)
-	 */
+	// Object get ();
+	void load (String s);
 
-	Object get ();
-	jData load();
+	 default String readText (String s) {
+		boolean skip = false;
+		String r = "";
+		for (char c : s.toCharArray()) {
+			if (skip) {
+				skip = false;
+				r = switch (c) {
+					default -> "\\" + c;
+					case '"' -> "\"";
+					case 'n' -> "\n";
+					case 't' -> "\t";
+					case '\\' -> "\\";
+					case 'b' -> "\b";
+					case 'f' -> "\f";
+					case 'r' -> "\r";
+				};
+				continue;
+			}
+			if (c == '\\') {
+				skip = true;
+			} else if (c == '"') {
+				break;
+			}
+			r = r + c;
+		}
+		return r;
+	}
 }
 
 final class jMap implements jData {
 
-	public static jData load (String s) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
-	public jData get () {
+	public void load (String s) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 }
 
 final class jArr implements jData {
-	@Override
-	public static jData load (String s) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public jData get () {
+	public void load (String s) {
 		// TODO Auto-generated method stub
-		return null;
+
 	}
 
 }
 
 abstract class jVar implements jData {
-	@Override
-	public static jData load (String s) {
-		return jNum.load(s);
-	}
+
 }
 
 final class jString extends jVar {
+
 	@Override
-	public static jData load (String s) {
-		// TODO Auto-generated method stub
-		return null;
+	public String readText (String s) {
+		String p=super(s);
 	}
 
 	@Override
-	public jData get () {
+	public void load (String s) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
-
 }
 
 final class jNum extends jVar {
 
 	@Override
-	public static jData load (String s) {
+	public void load (String s) {
 		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public jData get () {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
 }
