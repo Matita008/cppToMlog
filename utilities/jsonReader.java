@@ -5,7 +5,7 @@ import java.util.*;
 
 public final class jsonReader {
 	@SuppressWarnings ("unused")
-	private HashMap <String, jData> content = new HashMap <>(); //TODO why?
+	private HashMap <String, jData> content = new HashMap <>(); // TODO why?
 
 	/*
 	 * public jsonReader(File file (String name)-> {File file = new File(name)}) {
@@ -22,22 +22,27 @@ public final class jsonReader {
 
 interface jData {
 	String unused;
-	default String unused(){
-	 	return unused;
+
+	default String unused () {
+		return unused;
 	}
-	public jData scan(String d){
-		if(d.startWith('{')) return new jMap(d);
+
+	public static jData scan (String d) {
+		if (d.startsWith("{")) return new jMap(d);
+		throw new RuntimeException();
 	}
 }
 
 final class jMap implements jData {
-private HashMap <String, jData> d = new HashMap <>();
+	private HashMap <String, jData> d = new HashMap <>();
+
 	public jMap (String s) {
 		// TODO Auto-generated method stub
 	}
-public String get(String key){
-  return d.get(key);
-  }
+
+	public jData get (String key) {
+		return this.d.get(key);
+	}
 }
 
 final class jArr implements jData {
@@ -46,40 +51,20 @@ final class jArr implements jData {
 	}
 }
 
-abstract class jVar implements jData {
-	@Override
-	public static jData load (String s) {
-		return jNum.load(s);
-	}
-}
+abstract class jVar implements jData {}
 
 final class jString extends jVar {
-	@Override
-	public static jData load (String s) {
-		// TODO Auto-generated method stub
-		return null;
+	private String d;
+
+	public jString (String s) {
+		this.d = "q";
 	}
 
-	@Override
-	public jData get () {
-		// TODO Auto-generated method stub
-		return null;
+	public String get () {
+		return this.d;
 	}
-
 }
 
 final class jNum extends jVar {
-
-	@Override
-	public static jData load (String s) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public jData get () {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
