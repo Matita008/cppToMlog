@@ -57,7 +57,8 @@ final class jString extends jVar {
 	private String d;
 
 	public jString (String s) {
-		this.d = "q";
+		if(!s.startsWith("\"")) throw new RuntimeException();
+		this.d = s.split('"',1)[0];
 	}
 
 	public String get () {
