@@ -4,8 +4,10 @@ import java.util.*;
 //import java.io.*;
 
 public final class jsonReader {
-	@SuppressWarnings ("unused")
-	private HashMap <String, jData> content = new HashMap <>(); // TODO why?
+	/*
+	 * @SuppressWarnings ("unused") private HashMap <String, jData> content = new
+	 * HashMap <>(); // TODO why?
+	 */
 
 	/*
 	 * public jsonReader(File file (String name)-> {File file = new File(name)}) {
@@ -21,7 +23,7 @@ public final class jsonReader {
 }
 
 interface jData {
-	String unused;
+	String unused = null;
 
 	default String unused () {
 		return unused;
@@ -29,14 +31,15 @@ interface jData {
 
 	public static jData scan (String d) {
 		if (d.startsWith("{")) return new jMap(d);
-		throw new RuntimeException();
+		else if (d.startsWith("{")) return new jMap(d);
+		else return jVar.scan(d);
 	}
 }
 
 final class jMap implements jData {
 	private HashMap <String, jData> d = new HashMap <>();
 
-	public jMap (String s) {
+	public jMap(String s) {
 		// TODO Auto-generated method stub
 	}
 
@@ -46,24 +49,40 @@ final class jMap implements jData {
 }
 
 final class jArr implements jData {
-	public jArr (String s) {
+	public jArr(String s) {
 		// TODO Auto-generated method stub
 	}
 }
 
-abstract class jVar implements jData {}
+abstract class jVar implements jData {
+	public static jData scan (String d) {
+		if (d.replace(' ', "".toCharArray()[0]).startsWith("\"")) return new jString(d);
+		throw new RuntimeException();
+	}
+}
 
 final class jString extends jVar {
 	private String d;
 
-	public jString (String s) {
-		if(!s.startsWith("\"")) throw new RuntimeException();
-		this.d = s.split('"',1)[0];
+	public jString(String s) {
+		if (!s.startsWith("\"") || !d.replace(' ', "".toCharArray()[0]).startsWith("\"")) throw new RuntimeException();
+		int i = 0;
+		boolean skip = false;
+		StringBuilder b = new StringBuilder();
+		while (s.charAt(i) != '"') i++;
+		while (s.charAt(i) != '"' && !skip) {
+			b.append(s.charAt(i));
+			if (s.charAt(i) == '\\' && !skip) skip = true;
+			else skip = false;
+		}
+		d = b.toString();
 	}
 
 	public String get () {
 		return this.d;
 	}
+
+	public String getJson () { return '"' + this.d + '"'; }
 }
 
 final class jNum extends jVar {
