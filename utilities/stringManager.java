@@ -10,10 +10,9 @@ public class stringManager {
 	int opLength = 3;
 	ArrayList <String> op = new ArrayList <>();
 
-	public stringManager (@SuppressWarnings ("hiding")
-	String data) {
-		this.dataSt = data;
-		data.length();
+	public stringManager (String d) {
+		this.dataSt = d;
+		d.length();
 		this.data = this.dataSt.toCharArray();
 		loadBaseOp();
 	}
