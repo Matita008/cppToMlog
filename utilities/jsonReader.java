@@ -29,10 +29,16 @@ interface jData {
 		return unused;
 	}
 
+	abstract String getJson ();
+
 	public static jData scan (String d) {
 		if (d.startsWith("{")) return new jMap(d);
 		else if (d.startsWith("{")) return new jMap(d);
 		else return jVar.scan(d);
+	}
+
+	static String removeSpaces (String d) {
+		return d.replace(' ', "".toCharArray()[0]).replace('\t', "".toCharArray()[0]);
 	}
 }
 
@@ -46,17 +52,35 @@ final class jMap implements jData {
 	public jData get (String key) {
 		return this.d.get(key);
 	}
+
+	@Override
+	public String getJson () {
+		StringBuilder b = new StringBuilder();
+		b.append('{');
+		for (String s : d) {
+			b.append(s);
+			b.append(", ");
+			b.append(d.get(s).getJson());
+		}
+		b.append('}');
+		return b.toString();
+	}
 }
 
 final class jArr implements jData {
 	public jArr(String s) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public String getJson () { // TODO Auto-generated method stub
+		return null;
+	}
 }
 
 abstract class jVar implements jData {
 	public static jData scan (String d) {
-		if (d.replace(' ', "".toCharArray()[0]).startsWith("\"")) return new jString(d);
+		if (jData.removeSpaces(d).startsWith("\"")) return new jString(d);
 		throw new RuntimeException();
 	}
 }
@@ -86,5 +110,15 @@ final class jString extends jVar {
 }
 
 final class jNum extends jVar {
+	float n;
+
+	public jNum(String s) {
+		n = 0;
+	}
+
+	@Override
+	public String getJson () { // TODO Auto-generated method stub
+		return (String) n;
+	}
 
 }

@@ -5,12 +5,30 @@ import java.io.*;
 //import utilities.converter;
 
 public class stringManager {
+	public final String toString (float n) {
+		StringBuilder b = new StringBuilder();
+		char a = switch (c) {
+			case 0 -> '0';
+			case 1 -> '1';
+			case 2 -> '2';
+			case 3 -> '3';
+			case 4 -> '4';
+			case 5 -> '5';
+			case 6 -> '6';
+			case 7 -> '7';
+			case 8 -> '8';
+			case 9 -> '9';
+		};
+		b.append(a);
+		return b.toString();
+	}
+
 	private String dataSt;
 	private char[] data;
 	int opLength = 3;
 	ArrayList <String> op = new ArrayList <>();
 
-	public stringManager (@SuppressWarnings ("hiding")
+	public stringManager(@SuppressWarnings ("hiding")
 	String data) {
 		this.dataSt = data;
 		data.length();
