@@ -33,7 +33,7 @@ interface jData {
 
 	public static jData scan (String d) {
 		if (d.startsWith("{")) return new jMap(d);
-		else if (d.startsWith("{")) return new jMap(d);
+		else if (d.startsWith("[")) return new jArr(d);
 		else return jVar.scan(d);
 	}
 
@@ -102,7 +102,11 @@ final class jString extends jVar {
 		d = b.toString();
 	}
 
-	public String get () {
+	public String getUnmod () {
+		return this.d;
+	}
+
+public String get () {
 		return this.d;
 	}
 
