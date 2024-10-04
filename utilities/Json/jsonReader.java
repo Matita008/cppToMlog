@@ -22,8 +22,10 @@ public final class jsonReader {
 	 */
 }
 
-interface jData {
-	String unused = null;
+/***    
+ interface jData {
+ 
+ 	String unused = null;
 
 	default String unused () {
 		return unused;
@@ -102,11 +104,9 @@ final class jString extends jVar {
 		d = b.toString();
 	}
 
-	public String getUnmod () {
-		return this.d;
-	}
+	public String getUnmod () { return this.d; }
 
-public String get () {
+	public String get () {
 		return this.d;
 	}
 
@@ -126,3 +126,4 @@ final class jNum extends jVar {
 	}
 
 }
+***/
