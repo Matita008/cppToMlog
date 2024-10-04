@@ -12,18 +12,18 @@ interface jData {
 	// Object get ();
 	void load (String s);
 
-	 default String readText (String s) {
+	default String readText (String s) {
 		boolean skip = false;
 		String r = "";
 		for (char c : s.toCharArray()) {
 			if (skip) {
 				skip = false;
-				r = switch (c) {
+				r = r + switch (c) {
 					default -> "\\" + c;
-					case '"' -> "\"";
+					case '"' -> c;
+					case '\\' -> c;
 					case 'n' -> "\n";
 					case 't' -> "\t";
-					case '\\' -> "\\";
 					case 'b' -> "\b";
 					case 'f' -> "\f";
 					case 'r' -> "\r";
@@ -75,7 +75,7 @@ final class jString extends jVar {
 	@Override
 	public void load (String s) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
 
