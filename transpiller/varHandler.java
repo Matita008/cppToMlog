@@ -60,7 +60,7 @@ public class varHandler {
 		return -1;
 	}
 
-	public static void newScope () {
+	public static void openNewScope () {
 		ArrayList <Integer> c = new ArrayList <>(child.get(curScope));
 		c.add(curScope);
 		child.put(curScope, c);
